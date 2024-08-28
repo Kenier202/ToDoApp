@@ -11,7 +11,10 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   List toDoList = [
     ["programar", false],
-    ["gym", false]
+    ["gym", false],
+    ["programar", false],
+    ["gym", false],
+    ["programar", false],
   ];
 
   void checkBoxChange(bool? value, int index) {
@@ -23,14 +26,23 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[200],
+      backgroundColor: Colors.blueAccent[100],
       appBar: AppBar(
         title: const Center(
           child: Text(
             "To Do",
           ),
         ),
-        backgroundColor: Colors.yellow,
+        backgroundColor: const Color.fromARGB(255, 137, 178, 245),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 27, 102, 216),
+        hoverColor: const Color.fromARGB(255, 255, 255, 255),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () {},
       ),
       body: ListView.builder(
         itemCount: toDoList.length,
