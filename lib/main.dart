@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/config/routes/routes.dart';
+import 'package:todo_app/pages/toDo/home_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: routes,
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: HomeView(),
     );
   }
 }

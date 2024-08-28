@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/pages/toDo_barrel.dart';
+import 'package:todo_app/utils/create_new_task.dart';
 
 class HomeView extends StatefulWidget {
+  static const name = "HomeView";
   HomeView({super.key});
 
   @override
@@ -9,18 +11,40 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final _controller = TextEditingController();
+
   List toDoList = [
     ["programar", false],
     ["gym", false],
-    ["programar", false],
-    ["gym", false],
-    ["programar", false],
   ];
 
   void checkBoxChange(bool? value, int index) {
     setState(() {
       toDoList[index][1] = !toDoList[index][1];
     });
+  }
+
+  void saveNewTask() {
+    setState(() {
+      if (_controller.text.isEmpty) return;
+      toDoList.add(
+        [_controller.text, false],
+      );
+      Navigator.of(context).pop();
+    });
+  }
+
+  void addNewTask() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CreateNewTask(
+          controller: _controller,
+          onSaved: saveNewTask,
+          onCancel: () => Navigator.of(context).pop(),
+        );
+      },
+    );
   }
 
   @override
@@ -42,7 +66,9 @@ class _HomeViewState extends State<HomeView> {
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          addNewTask();
+        },
       ),
       body: ListView.builder(
         itemCount: toDoList.length,

@@ -31,7 +31,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  go_router: ^14.2.7
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
