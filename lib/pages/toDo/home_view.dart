@@ -11,19 +11,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // filed controller
   final _controller = TextEditingController();
 
+  // to do list
   List toDoList = [
     ["programar", false],
     ["gym", false],
   ];
 
+  // checkbox
   void checkBoxChange(bool? value, int index) {
     setState(() {
       toDoList[index][1] = !toDoList[index][1];
     });
   }
 
+  // save new task
   void saveNewTask() {
     setState(() {
       if (_controller.text.isEmpty) return;
@@ -31,9 +35,11 @@ class _HomeViewState extends State<HomeView> {
         [_controller.text, false],
       );
       Navigator.of(context).pop();
+      _controller.clear();
     });
   }
 
+  // add task
   void addNewTask() {
     showDialog(
       context: context,
@@ -47,6 +53,8 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  // delete task
+  void DelteTask() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +85,7 @@ class _HomeViewState extends State<HomeView> {
             taskName: toDoList[index][0],
             taskComplete: toDoList[index][1],
             onChange: (value) => checkBoxChange(value, index),
+            deleteFunction: (p0) => DelteTask(),
           );
         },
       ),
